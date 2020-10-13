@@ -11,20 +11,32 @@ class Goal(Enum):
     C = 3
     D = 4
 
-
 class Environment:
 
+    plot_0 = []
     plot_1 = []
     plot_2 = []
-    plot_3 = []
     
-    def move():
-
-    def push():
-
     def who_is_up():
 
     def who_is_down():
+
+    def add_agent_to_plot(plot, agent):
+        if plot == 0:
+            plot_0.add(agent)
+        elif plot == 1:
+            plot_1.add(agent)
+        elif plot == 2:
+            plot_2.add(agent)
+        else:
+
+def setup(environment, agents):
+    # mettre les agents au hasard
+    # dans un plot
+    for agent in agents:
+        r = random.randint(0, 2)
+        environment.add_agent_to_plot(r, agent)
+
 
 # agents: blocs A, B, C, D
 
@@ -38,6 +50,10 @@ class Agent:
         self.goal =  goal
         self.second = s 
 
+    def move():
+
+    def push():
+
     def is_free():
         # appel à Environment.who_is_up
 
@@ -45,14 +61,12 @@ class Agent:
         # appel à Environment.who_is_up
 
     def do():
-        if !is_sat():
-    
+        if not is_sat():
+            if is_free():
+                move()
+            else:
+                push()
 
-def setup(agents):
-    # mettre les agents au hasard
-    # dans un plot
-    for agent in agents:
-        r = random.randint(0, 2)
 
 def schedule(agents):
 
@@ -61,6 +75,7 @@ def schedule(agents):
 
 
 def main():
+    environment = Environment()
     a = Agent(Goal.S)
     b = Agent(Goal.A)
     c = Agent(Goal.B)
@@ -69,7 +84,7 @@ def main():
     # choisir l'ordre d'itération des agents
     agents = [a, b, c, d]
 
-    setup(agents)
+    setup(environment, agents)
     
 
     schedule(agents)
